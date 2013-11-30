@@ -1,0 +1,16 @@
+h1= @question.title
+.multiple_choice
+  - @question.choices.each do |choice|
+    .btn.btn-primary.btn-lg.mchoice
+      span= choice
+
+javascript:
+  $(".mchoice").on("click",function(){
+    $(".mchoice").removeClass("btn-warning active");
+    $(this).addClass("btn-warning active")
+  });
+
+  $(".choose").on("click", function(e){
+    e.preventDefault();
+    window.answers["multiple_choice"] = $(".mchoice.active > span").text()
+  });

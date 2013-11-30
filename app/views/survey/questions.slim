@@ -1,0 +1,16 @@
+.jumbotron
+  .row
+    = render "question_types/multiple_choice"
+  hr
+  .row
+    .pull-left
+      .btn.btn-default.back Back
+    .pull-right
+      .btn.btn-primary.choose Next
+
+javascript:
+  window.answers = {}
+  $(".choose").on("click", function(){
+    location.replace("/survey/question2?params="+$.param(answers));
+  });
+
