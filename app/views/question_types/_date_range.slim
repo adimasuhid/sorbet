@@ -1,19 +1,21 @@
 .date_range
-  .input-group.margin-bottom-sm
-    = text_field_tag "start_date", nil, class: "form-control",
-      data: {format:"YYYY-MM-DD"},
-      placeholder: "Start Date",
-      readonly: true
-    span.input-group-addon
-      i.fa.fa-calendar
-
-  .input-group.margin-bottom-sm
-    = text_field_tag "end_date", nil, class: "form-control",
-      data: {format:"YYYY-MM-DD"},
-      placeholder: "End Date",
-      readonly: true
-    span.input-group-addon
-      i.fa.fa-calendar
+  .row
+    .col-md-6
+      .input-group.margin-bottom-sm
+        = text_field_tag "start_date", nil, class: "form-control",
+          data: {format:"YYYY-MM-DD"},
+          placeholder: "Start Date",
+          readonly: true
+        span.input-group-addon
+          i.fa.fa-calendar
+    .col-md-6
+      .input-group.margin-bottom-sm
+        = text_field_tag "end_date", nil, class: "form-control",
+          data: {format:"YYYY-MM-DD"},
+          placeholder: "End Date",
+          readonly: true
+        span.input-group-addon
+          i.fa.fa-calendar
 
 javascript:
   $(document).ready(function(){

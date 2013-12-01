@@ -6,6 +6,7 @@ class SurveyController < ApplicationController
   def question1
     session[:user] ||= User.create!(ip: request.ip).id
     @question = Question.where(sequence: 1).first
+    @back_path = survey_index_path
     @next_path = question2_survey_index_path
 
     render "questions"
