@@ -1,0 +1,24 @@
+.checkbox
+  .control-group
+    - @question.choices["checkbox"].each do |choice|
+      .controls
+        label.checkbox
+          input type="checkbox" value="#{choice}"
+          ="#{choice}"
+
+
+javascript:
+  $(document).ready(function(){
+
+    $("#survey").on("collect", function(e){
+      checked = []
+
+      $("input[type=checkbox]:checked").each(function(){
+        checked.push($(this).val());
+      });
+
+      window.answers["checkbox"] = checked;
+    });
+
+  });
+
