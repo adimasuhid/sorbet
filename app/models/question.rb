@@ -2,7 +2,7 @@ class Question
   include Mongoid::Document
   field :title, type: String
   field :question_type, type: Array
-  field :choices, type: Array
+  field :choices, type: Hash
   field :description, type: String
   field :sequence, type: Integer
   has_many :answers

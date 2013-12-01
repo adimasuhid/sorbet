@@ -1,6 +1,6 @@
 .radio
   .btn-group data-toggle="buttons"
-    - @question.choices.each do |choice|
+    - @question.choices["radio"].each do |choice|
       label.btn.btn-primary
         input id="#{choice.parameterize}" name="options" type="radio" data-value="#{choice}"
           = "#{choice}"
