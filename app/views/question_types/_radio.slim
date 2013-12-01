@@ -1,0 +1,16 @@
+.radio
+  .btn-group data-toggle="buttons"
+    - @question.choices.each do |choice|
+      label.btn.btn-primary
+        input id="#{choice.parameterize}" name="options" type="radio" data-value="#{choice}"
+          = "#{choice}"
+
+javascript:
+  $(document).ready(function(){
+
+    $("#survey").on("collect", function(e){
+      window.answers["radio"] = $("input[type=radio]:checked").data('value');
+    });
+
+  });
+

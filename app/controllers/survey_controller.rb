@@ -35,6 +35,18 @@ class SurveyController < ApplicationController
     render "questions"
   end
 
+  def question4
+    previous_question = Question.where(sequence: 3).first
+    @answer = Answer.create(user: current_user,
+                         question: previous_question,
+                         answers: survey_params)
+
+    @question = Question.where(sequence: 4).first
+    @next_path = question5_survey_index_path
+
+    render "questions"
+  end
+
   private
     def survey_params
       params.permit("multiple_choice", "number_range",
