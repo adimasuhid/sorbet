@@ -31,6 +31,13 @@ class SurveyController < ApplicationController
     process_question(6)
   end
 
+  def question7
+    @previous_question = Question.where(sequence: 6).first
+    options = {user: current_user, question: @previous_question}
+    save_answers(options)
+    render "thank_you"
+  end
+
   private
     def survey_params
       params.permit("multiple_choice", "number_range", "checkbox", "dropdown", {date_range: []})
@@ -47,7 +54,7 @@ class SurveyController < ApplicationController
       @back_path = send("question#{number-1}_survey_index_path")
 
       options = {user: current_user, question: @previous_question}
-      save_answers(options) #add error handlin
+      save_answers(options) #add error handling
 
       render "questions"
     end
