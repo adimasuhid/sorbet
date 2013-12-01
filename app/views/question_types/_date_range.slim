@@ -1,0 +1,34 @@
+.date_range
+  .input-group.margin-bottom-sm
+    = text_field_tag "start_date", nil, class: "form-control",
+      data: {format:"YYYY-MM-DD"},
+      placeholder: "Start Date",
+      readonly: true
+    span.input-group-addon
+      i.fa.fa-calendar
+
+  .input-group.margin-bottom-sm
+    = text_field_tag "end_date", nil, class: "form-control",
+      data: {format:"YYYY-MM-DD"},
+      placeholder: "End Date",
+      readonly: true
+    span.input-group-addon
+      i.fa.fa-calendar
+
+javascript:
+  $(document).ready(function(){
+
+    $('.input-group').datetimepicker({
+      pickTime: false
+    });
+
+    $("#survey").on("collect", function(e){
+      e.preventDefault();
+      start_date = $("#start_date").val();
+      end_date = $("#end_date").val();
+
+      window.answers["date_range"] = [start_date, end_date];
+    });
+
+  });
+

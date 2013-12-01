@@ -1,16 +1,24 @@
-.jumbotron
-  .row
-    = render "question_types/multiple_choice"
-  hr
+.jumbotron#survey
+  h1= @question.title
+  - @question.question_type.each do |type|
+    .row
+      = render "question_types/#{type}"
+    hr
   .row
     .pull-left
       .btn.btn-default.back Back
     .pull-right
-      .btn.btn-primary.choose Next
+      = link_to "Next", @next_path, class: "btn btn-primary choose"
 
 javascript:
-  window.answers = {}
-  $(".choose").on("click", function(){
-    location.replace("/survey/question2?params="+$.param(answers));
+  $(document).ready(function(){
+
+    window.answers = {}
+    $(".choose").on("click", function(e){
+      e.preventDefault();
+      $("#survey").trigger("collect");
+      location.replace($(this).attr('href') +'?'+$.param(answers));
+    });
+
   });
 

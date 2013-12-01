@@ -1,16 +1,19 @@
-h1= @question.title
 .multiple_choice
   - @question.choices.each do |choice|
     .btn.btn-primary.btn-lg.mchoice
       span= choice
 
 javascript:
-  $(".mchoice").on("click",function(){
-    $(".mchoice").removeClass("btn-warning active");
-    $(this).addClass("btn-warning active")
-  });
+  $(document).ready(function(){
 
-  $(".choose").on("click", function(e){
-    e.preventDefault();
-    window.answers["multiple_choice"] = $(".mchoice.active > span").text()
+    $(".mchoice").on("click",function(){
+      $(".mchoice").removeClass("btn-warning active");
+      $(this).addClass("btn-warning active")
+    });
+
+    $("#survey").on("collect", function(e){
+      console.log("puta bat ganon");
+      window.answers["multiple_choice"] = $(".mchoice.active > span").text()
+    });
+
   });

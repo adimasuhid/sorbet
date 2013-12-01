@@ -37,6 +37,9 @@ group :development, :test do
 end
 
 gem 'slim-rails'
+gem 'font-awesome-rails'
+gem 'momentjs-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

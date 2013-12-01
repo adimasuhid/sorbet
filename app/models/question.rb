@@ -12,7 +12,8 @@ class Question
     date_range: "date_range",
     number_range: "number_range",
     checkbox: "checkbox",
-    dropdown: "dropdown"
+    dropdown: "dropdown",
+    radio: "radio"
   }
 
 end
