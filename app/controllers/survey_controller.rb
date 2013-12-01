@@ -12,79 +12,48 @@ class SurveyController < ApplicationController
   end
 
   def question2
-    previous_question = Question.where(sequence: 1).first
-    @answer = Answer.create(user: current_user,
-                         question: previous_question,
-                         answers: survey_params)
-
-    @question = Question.where(sequence: 2).first
-    @next_path = question3_survey_index_path
-
-    render "questions"
+    process_question(2)
   end
 
   def question3
-    previous_question = Question.where(sequence: 2).first
-    @answer = Answer.create(user: current_user,
-                         question: previous_question,
-                         answers: survey_params)
-
-    @question = Question.where(sequence: 3).first
-    @next_path = question4_survey_index_path
-
-    render "questions"
+    process_question(3)
   end
 
   def question4
-    previous_question = Question.where(sequence: 3).first
-    @answer = Answer.create(user: current_user,
-                         question: previous_question,
-                         answers: survey_params)
-
-    @question = Question.where(sequence: 4).first
-    @next_path = question5_survey_index_path
-
-    render "questions"
+    process_question(4)
   end
 
   def question5
-    previous_question = Question.where(sequence: 4).first
-    @answer = Answer.create(user: current_user,
-                         question: previous_question,
-                         answers: survey_params)
-
-    @question = Question.where(sequence: 5).first
-    @next_path = question6_survey_index_path
-
-    render "questions"
+    process_question(5)
   end
 
   def question6
-    previous_question = Question.where(sequence: 5).first
-    @answer = Answer.create(user: current_user,
-                         question: previous_question,
-                         answers: survey_params)
-
-    @question = Question.where(sequence: 6).first
-    @next_path = question7_survey_index_path
-
-    render "questions"
+    process_question(6)
   end
 
   private
     def survey_params
-      params.permit("multiple_choice", "number_range",
-                    "checkbox", "dropdown", {date_range: []})
-    end
-
-    def previous_question
-      #implement this when you finish the code or when you are bored hehe
-      this_method_name
-      #current_method = __method__
-      #raise current_method.to_yaml
+      params.permit("multiple_choice", "number_range", "checkbox", "dropdown", {date_range: []})
     end
 
     def current_user
       User.find(session[:user])
+    end
+
+    def process_question(number)
+      @previous_question = Question.where(sequence: number-1).first
+      @question = Question.where(sequence: number).first
+      @next_path = send("question#{number+1}_survey_index_path")
+      @back_path = send("question#{number-1}_survey_index_path")
+
+      options = {user: current_user, question: @previous_question}
+      save_answers(options) #add error handlin
+
+      render "questions"
+    end
+
+    def save_answers(options)
+      @answer = Answer.where(options).first || Answer.create(options)
+      @answer.update_attributes(answers: survey_params)
     end
 end

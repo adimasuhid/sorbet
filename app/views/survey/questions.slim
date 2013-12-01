@@ -6,7 +6,7 @@
     hr
   .row
     .pull-left
-      .btn.btn-default.back Back
+      = link_to "Back", @back_path, class: "btn btn-default back"
     .pull-right
       = link_to "Next", @next_path, class: "btn btn-primary choose"
 
