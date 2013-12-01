@@ -1,0 +1,14 @@
+.dropdown
+  select class="form-control"
+    - @question.choices["dropdown"].each do |choice|
+      option= choice
+
+javascript:
+  $(document).ready(function(){
+
+    $("#survey").on("collect", function(e){
+      window.answers["radio"] = $(".dropdown select").val();
+    });
+
+  });
+
