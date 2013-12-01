@@ -7,6 +7,7 @@ Cruisepicker::Application.routes.draw do
       get :question4
       get :question5
       get :question6
+      get :question7
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,14 @@
+.number_range
+  | Total:
+  input#slider.span2 type="text" value="4"
+
+javascript:
+  $(document).ready(function(){
+
+    $("#slider").slider();
+
+    $("#survey").on("collect", function(){
+      window.answers["number_range"] = $("#slider").val();
+    });
+
+  });
