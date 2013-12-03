@@ -1,15 +1,8 @@
 Cruisepicker::Application.routes.draw do
-  resources :survey do
-    collection do
-      get :question1
-      get :question2
-      get :question3
-      get :question4
-      get :question5
-      get :question6
-      get :question7
-    end
-  end
+  resources :survey
+
+  get "/survey/question/:id" => "survey#question", as: :question_survey
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
